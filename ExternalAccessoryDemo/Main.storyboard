@@ -72,25 +72,12 @@
                                             <outlet property="delegate" destination="rj9-po-eOj" id="6Da-eS-wuJ"/>
                                         </connections>
                                     </tableView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D9h-Ys-96j">
-                                        <rect key="frame" x="137.5" y="577" width="100" height="40"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                        <state key="normal" title="OK" backgroundImage="image-button_blue.png">
-                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="closeSelectVCTouchUpInside:" destination="rj9-po-eOj" eventType="touchUpInside" id="LYA-vd-cfF"/>
-                                        </connections>
-                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="wiC-rs-ZwB" firstAttribute="height" secondItem="Tm8-n5-L1v" secondAttribute="height" id="1QW-KT-o9G"/>
                                     <constraint firstItem="wiC-rs-ZwB" firstAttribute="width" secondItem="Tm8-n5-L1v" secondAttribute="width" id="4mR-yU-FHc"/>
                                     <constraint firstItem="wiC-rs-ZwB" firstAttribute="centerY" secondItem="Tm8-n5-L1v" secondAttribute="centerY" id="6jZ-gV-9WU"/>
-                                    <constraint firstItem="D9h-Ys-96j" firstAttribute="centerX" secondItem="Tm8-n5-L1v" secondAttribute="centerX" id="EfH-j6-ibc"/>
-                                    <constraint firstAttribute="bottom" secondItem="D9h-Ys-96j" secondAttribute="bottom" constant="50" id="gF7-zI-VQc"/>
                                     <constraint firstItem="wiC-rs-ZwB" firstAttribute="centerX" secondItem="Tm8-n5-L1v" secondAttribute="centerX" id="iQZ-sk-lQ9"/>
                                 </constraints>
                             </view>
@@ -166,7 +153,4 @@
             <point key="canvasLocation" x="20" y="36.431784107946029"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="image-button_blue.png" width="100" height="40"/>
-    </resources>
 </document>

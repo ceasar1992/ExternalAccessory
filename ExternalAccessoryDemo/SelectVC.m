@@ -20,6 +20,7 @@
 @implementation SelectVC
 {
     EAAccessory *_accessory;
+    EASession *_session;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -38,7 +39,7 @@
     self.title = self.eaName;
     self.view.backgroundColor = [UIColor colorWithWhite:0.5 alpha:0.7];
     
-    [self openSessionForProtocol:[self.protocolStrings firstObject]];
+    _session = [self openSessionForProtocol:[self.protocolStrings firstObject]];
 }
 
 
@@ -56,13 +57,13 @@
     {
         case NSStreamEventHasBytesAvailable:
         {// Process the incoming stream data.
-            
+            [self receiveData];
         }
             break;
             
         case NSStreamEventHasSpaceAvailable:
         {// Send the next queued command.
-            
+            [self writeData];
         }
             break;
             
@@ -153,9 +154,43 @@
 
 #pragma mark - 私有方法
 
--(IBAction)closeSelectVCTouchUpInside:(id)sender
+-(void)receiveData
 {
-    [self.view removeFromSuperview];
+    NSInteger maxLength = 128;
+    uint8_t readBuffer [maxLength];
+    //是否已经到结尾标识
+    BOOL endOfStreamReached = NO;
+    // NOTE: this tight loop will block until stream ends
+    while (! endOfStreamReached)
+    {
+        NSInteger bytesRead = [_session.inputStream read: readBuffer maxLength:maxLength];
+        if (bytesRead == 0)
+        {//文件读取到最后
+            endOfStreamReached = YES;
+        }
+        else if (bytesRead == -1)
+        {//文件读取错误
+            endOfStreamReached = YES;
+        }
+        else
+        {
+            NSString *readBufferString =[[NSString alloc] initWithBytesNoCopy:readBuffer length:bytesRead encoding: NSUTF8StringEncoding freeWhenDone: NO];
+            //将字符不断的加载到视图
+            NSLog(@"收到设备信息：%@",readBufferString);
+            TTSLOG(@"收到设备信息");
+        }
+    }
 }
+
+-(void)writeData
+{
+    BOOL isAvailable = _session.outputStream.hasSpaceAvailable;
+    if (isAvailable == YES) {
+        NSData *data = [[NSData alloc]initWithBase64EncodedString:@"出发了老铁" options:NSDataBase64DecodingIgnoreUnknownCharacters];
+        [_session.outputStream write:[data bytes] maxLength:data.length];
+    }
+    
+}
+
 
 @end

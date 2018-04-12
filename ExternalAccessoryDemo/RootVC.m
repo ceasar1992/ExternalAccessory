@@ -7,7 +7,7 @@
 //
 
 #import "RootVC.h"
-#import <MobileCoreServices/UTCoreTypes.h>
+//#import <MobileCoreServices/UTCoreTypes.h>
 #import <ExternalAccessory/ExternalAccessory.h>
 
 #import "SelectVC.h"
